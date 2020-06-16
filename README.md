@@ -1,1 +1,1 @@
-my-smart-home-app
+# @nzws/room-console
