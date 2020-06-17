@@ -17,9 +17,14 @@ const apiWebHook = async ctx => {
 
   for (const workflow of workflows) {
     try {
-      await send(workflow.id, workflow.type, {
-        value: workflow.value || undefined
-      });
+      await send(
+        workflow.id,
+        workflow.type,
+        {
+          value: workflow.value || undefined
+        },
+        result.id
+      );
     } catch (e) {
       return errorController(ctx, 503, e.message);
     }

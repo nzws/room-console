@@ -2,6 +2,7 @@ import { Client } from 'discord.js';
 import { logInfo } from './utils/logger';
 import db from './db';
 import services from './services';
+import send from './utils/send';
 
 const discord = () => {
   if (!process.env.DISCORD_AUTOMANAGE_PLUG_ID) {
@@ -39,29 +40,13 @@ const discord = () => {
       const current = await tpClient.getIsRunning();
       if (resultToOff && current) {
         // turn off
-        await tpClient.powerOff();
-        await db.tables.Log.create({
-          deviceId: device.id,
-          createdBy: 'discord',
-          type: 'off'
-        });
-        await device.update({
-          isRunning: false
-        });
+        await send(device.id, 'off', {}, 'discord');
         return;
       }
 
       if (resultToOn && !current) {
         // turn on
-        await tpClient.powerOn();
-        await db.tables.Log.create({
-          deviceId: device.id,
-          createdBy: 'discord',
-          type: 'on'
-        });
-        await device.update({
-          isRunning: true
-        });
+        await send(device.id, 'on', {}, 'discord');
       }
     });
   });

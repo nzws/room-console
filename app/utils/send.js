@@ -1,7 +1,7 @@
 import db from '../db';
 import services from '../services';
 
-const send = async (id, type, data = {}) => {
+const send = async (id, type, data = {}, createdBy = 'me') => {
   const device = await db.tables.Device.findOne({
     where: {
       id
@@ -35,7 +35,7 @@ const send = async (id, type, data = {}) => {
     const result = await client.sendCustomSignal(type, data);
     await db.tables.Log.create({
       deviceId: device.id,
-      createdBy: 'me',
+      createdBy,
       type: 'action',
       data: {
         ...data,
@@ -54,7 +54,7 @@ const send = async (id, type, data = {}) => {
   if (device.isRunning !== updatedData.isRunning) {
     await db.tables.Log.create({
       deviceId: device.id,
-      createdBy: 'me',
+      createdBy,
       type: updatedData.isRunning ? 'on' : 'off'
     });
   }
