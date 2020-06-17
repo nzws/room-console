@@ -23,9 +23,6 @@ const discord = () => {
       throw new Error('not found device');
     }
 
-    const tpClient = new services[device.type](device);
-    await tpClient.login();
-
     client.on('presenceUpdate', async (_, newMember) => {
       if (newMember.userID !== process.env.DISCORD_ACCOUNT_ID) {
         return;
@@ -36,6 +33,9 @@ const discord = () => {
         ['idle', 'offline'].indexOf(newMember.clientStatus.desktop) !== -1;
       const resultToOn =
         ['online', 'dnd'].indexOf(newMember.clientStatus.desktop) !== -1;
+
+      const tpClient = new services[device.type](device);
+      await tpClient.login();
 
       const current = await tpClient.getIsRunning();
       if (resultToOff && current) {
