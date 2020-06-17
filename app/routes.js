@@ -7,19 +7,28 @@ import auth from './middlewares/auth';
 import authCallback from './controllers/public-api/callback';
 import authLogin from './controllers/public-api/login';
 
-import apiAdminItems from './controllers/adm-api/items';
+import apiDevices from './controllers/auth-api/devices';
+import apiSend from './controllers/auth-api/send';
+import apiAddDevice from './controllers/auth-api/add-device';
+import apiWeather from './controllers/auth-api/weather';
+import apiLogs from './controllers/auth-api/logs';
 
 const Route = () => {
   const router = new Router();
 
   const authAPI = new Router();
-  authAPI.post('/items', apiAdminItems);
+  authAPI.post('/weather', apiWeather);
+  authAPI.post('/add-device', apiAddDevice);
+  authAPI.post('/devices', apiDevices);
+  authAPI.post('/send', apiSend);
+  authAPI.post('/logs', apiLogs);
 
   router.use('/auth-api', auth, authAPI.routes(), authAPI.allowedMethods());
 
   const API = new Router();
   API.post('/login', authLogin);
   API.post('/login-callback', authCallback);
+  API.get('/webhook/:token', ctx => (ctx.body = JSON.stringify(ctx.params)));
 
   router.use('/public-api', API.routes(), API.allowedMethods());
 

@@ -7,7 +7,7 @@ const NavComponent = () => {
     <PageHeader
       title={
         <>
-          <HomeOutlined /> My Room
+          <HomeOutlined /> Room Console
         </>
       }
     />

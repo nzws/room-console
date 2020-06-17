@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Col, Input as AntInput, Typography } from 'antd';
+import {
+  Button,
+  Row,
+  Col,
+  Input as AntInput,
+  Typography,
+  notification
+} from 'antd';
 import { MailOutlined } from '@ant-design/icons';
-import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import api from '../utils/api';
 
@@ -20,7 +26,9 @@ const Login = () => {
     await api('/public-api/login', {
       mail
     });
-    toast.success('メールを送信しました。');
+    notification.success({
+      message: 'メールを送信しました。'
+    });
   };
 
   useEffect(() => {

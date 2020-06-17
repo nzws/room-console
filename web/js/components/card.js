@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Card, Switch } from 'antd';
+import { Card, Switch, Row } from 'antd';
 import { Link } from 'react-router-dom';
+import api from '../utils/api';
+import Container from './container';
+import services from '../services';
+import buttons from './buttons';
 
 const StyledCard = styled(Card)`
   margin-bottom: 10px;
 `;
 
 const CardComponent = ({ data }) => {
-  const [isRunning, setIsRunning] = useState(false);
+  const { updateDevices } = Container.useContainer();
   const [isLoading, setIsLoading] = useState(false);
 
-  const setRunning = status => {
+  const service = services[data.type];
+
+  const update = async (type, postData = {}) => {
+    if (isLoading) {
+      return;
+    }
     setIsLoading(true);
-    setTimeout(() => {
-      setIsRunning(status);
-      setIsLoading(false);
-    }, 1000);
+    try {
+      await api('/auth-api/send', {
+        id: data.id,
+        type,
+        data: postData
+      });
+    } catch (_) {
+      return setIsLoading(false);
+    }
+    setIsLoading(false);
+    updateDevices();
   };
 
   return (
@@ -29,9 +45,32 @@ const CardComponent = ({ data }) => {
         </Link>
       }
       extra={
-        <Switch checked={isRunning} onChange={setRunning} loading={isLoading} />
+        <Switch
+          checked={data.isRunning}
+          onChange={() => update(data.isRunning ? 'off' : 'on')}
+          loading={isLoading}
+        />
       }
-    ></StyledCard>
+    >
+      <Row justify="space-around">
+        {service.buttons &&
+          service.buttons.map(i => {
+            const Component = buttons[i.id];
+            if (!Component) return <Fragment key={i.name}></Fragment>;
+
+            return (
+              <Component
+                key={i.name}
+                small
+                data={i}
+                device={data}
+                update={update}
+                isLoading={isLoading}
+              />
+            );
+          })}
+      </Row>
+    </StyledCard>
   );
 };
 

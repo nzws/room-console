@@ -1,5 +1,5 @@
 import ky from 'ky';
-import { toast } from 'react-toastify';
+import { notification } from 'antd';
 
 const api = async (path, json = {}) => {
   const token = localStorage.getItem('api_token');
@@ -18,9 +18,12 @@ const api = async (path, json = {}) => {
   } catch (e) {
     console.error(e);
     e?.response?.json().then(e => {
-      toast.error(e.error);
+      notification.error({
+        message: e.error
+      });
       if (e.error.indexOf('require_renew_auth') !== -1) {
         localStorage.removeItem('api_token');
+        location.reload();
       }
     });
     throw e;

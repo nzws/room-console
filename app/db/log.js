@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
-const Device = sequelize => {
-  return sequelize.define('device', {
+const Log = sequelize => {
+  return sequelize.define('log', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -9,13 +9,9 @@ const Device = sequelize => {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4
     },
-    name: Sequelize.STRING,
+    deviceId: Sequelize.UUID,
+    createdBy: Sequelize.STRING,
     type: Sequelize.STRING,
-    deviceId: Sequelize.STRING,
-    isRunning: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: true
-    },
     data: {
       type: Sequelize.JSON,
       defaultValue: {}
@@ -23,4 +19,4 @@ const Device = sequelize => {
   });
 };
 
-export default Device;
+export default Log;

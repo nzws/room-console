@@ -5,6 +5,7 @@ import logger from './middlewares/logger';
 import headers from './middlewares/headers';
 import route from './routes';
 import db from './db';
+import worker from './worker';
 
 (async () => {
   if (process.env.NODE_ENV !== 'development') {
@@ -26,6 +27,8 @@ import db from './db';
   app.use(router.allowedMethods());
 
   app.listen(process.env.PORT || 5801);
+
+  setInterval(worker, 1000 * 60 * 5); // 5分
 
   logInfo('Server started >w<');
 })();

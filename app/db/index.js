@@ -1,8 +1,10 @@
 import Sequelize from 'sequelize';
 
 import Auth from './auth';
-import Mailwaiting from './mailwaiting';
 import Device from './device';
+import Hook from './hook';
+import Log from './log';
+import Mailwaiting from './mailwaiting';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const sequelize = new Sequelize(
@@ -24,8 +26,10 @@ const sequelize = new Sequelize(
 const db = {
   tables: {
     Auth,
-    Mailwaiting,
-    Device
+    Device,
+    Hook,
+    Log,
+    Mailwaiting
   },
   Op: Sequelize.Op,
   sequelize
