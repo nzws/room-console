@@ -14,7 +14,8 @@ const logLocale = {
   update_data: `設定が変更されました`,
   action: `アクションを実行しました`,
   me: `あなた`,
-  anonymous: `誰か (外部操作)`
+  anonymous: `誰か (外部操作)`,
+  discord: 'Discord 自動制御'
 };
 
 const Device = () => {
@@ -111,10 +112,11 @@ const Device = () => {
             }
           >
             <p>
-              {['me', 'anonymous'].indexOf(i.createdBy) !== -1
+              {['me', 'anonymous', 'discord'].indexOf(i.createdBy) !== -1
                 ? logLocale[i.createdBy]
                 : `Hook (${i.createdBy})`}
-              : {logLocale[i.type]} - {new Date(i.createdAt).toLocaleString('ja-JP')}
+              : {logLocale[i.type]} -{' '}
+              {new Date(i.createdAt).toLocaleString('ja-JP')}
             </p>
             {Object.keys(i.data)[0] && <>{JSON.stringify(i.data)}</>}
           </Timeline.Item>

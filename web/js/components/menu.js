@@ -14,9 +14,6 @@ const MenuComponent = () => {
       <Menu.Item>
         <Link to="/settings/devices">デバイスを追加</Link>
       </Menu.Item>
-      <Menu.Item>
-        <Link to="/settings/hooks">フックの管理</Link>
-      </Menu.Item>
       <Menu.Item danger onClick={logout}>
         ログアウト
       </Menu.Item>

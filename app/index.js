@@ -6,6 +6,7 @@ import headers from './middlewares/headers';
 import route from './routes';
 import db from './db';
 import worker from './worker';
+import discord from './discord';
 
 (async () => {
   if (process.env.NODE_ENV !== 'development') {
@@ -29,6 +30,7 @@ import worker from './worker';
   app.listen(process.env.PORT || 5801);
 
   setInterval(worker, 1000 * 60 * 5); // 5分
+  discord();
 
   logInfo('Server started >w<');
 })();

@@ -43,7 +43,6 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route path="/device/:id" component={Device} />
-            <Route path="/settings/hooks" component={Login} />
             <Route path="/settings/devices" component={Devices} />
           </Switch>
         </Layout>

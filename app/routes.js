@@ -12,6 +12,7 @@ import apiSend from './controllers/auth-api/send';
 import apiAddDevice from './controllers/auth-api/add-device';
 import apiWeather from './controllers/auth-api/weather';
 import apiLogs from './controllers/auth-api/logs';
+import apiWebHook from './controllers/public-api/webhook';
 
 const Route = () => {
   const router = new Router();
@@ -28,7 +29,7 @@ const Route = () => {
   const API = new Router();
   API.post('/login', authLogin);
   API.post('/login-callback', authCallback);
-  API.get('/webhook/:token', ctx => (ctx.body = JSON.stringify(ctx.params)));
+  API.post('/webhook/:token', apiWebHook);
 
   router.use('/public-api', API.routes(), API.allowedMethods());
 
