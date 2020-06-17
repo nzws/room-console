@@ -37,6 +37,7 @@ const Device = () => {
       id
     });
     setLog(logs.result);
+    updateDevices();
   };
 
   if (!device) {
