@@ -53,7 +53,7 @@
   "prettier": "@nzws/prettier-config",
   "scripts": {
     "build:server": "cross-env NODE_ENV=production babel app -d build --copy-files",
-    "build:client": "parcel build web/index.html -d dist --public-url ./ --no-source-maps",
+    "build:client": "parcel build web/index.html -d dist --public-url /assets/ --no-source-maps",
     "build": "npm-run-all build:* -s",
     "dev:server": "nodemon --exec \"cross-env NODE_ENV=development node -r @babel/register -r dotenv/config app\" -e js,pug,json --watch app --delay 500ms",
     "dev:client": "parcel watch web/index.html -d dist --public-url /assets/ --no-hmr",
