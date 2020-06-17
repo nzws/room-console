@@ -45,6 +45,9 @@ const discord = () => {
           createdBy: 'discord',
           type: 'off'
         });
+        await device.update({
+          isRunning: false
+        });
         return;
       }
 
@@ -55,6 +58,9 @@ const discord = () => {
           deviceId: device.id,
           createdBy: 'discord',
           type: 'on'
+        });
+        await device.update({
+          isRunning: true
         });
       }
     });
