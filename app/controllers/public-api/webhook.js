@@ -1,6 +1,7 @@
 import db from '../../db';
 import { errorController } from '../common';
 import send from '../../utils/send';
+import { logError } from '../../utils/logger';
 
 const apiWebHook = async ctx => {
   const { workflows } = ctx.request.body;
@@ -26,7 +27,7 @@ const apiWebHook = async ctx => {
         result.id
       );
     } catch (e) {
-      return errorController(ctx, 503, e.message);
+      logError(e);
     }
   }
 

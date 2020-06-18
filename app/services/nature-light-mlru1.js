@@ -37,7 +37,7 @@ export default class NatureLightMLRU1 {
 
   async powerOn() {
     if (await this.getIsRunning()) {
-      throw new Error('already on');
+      return;
     }
     const signalId = this._getSignalId('ico_on');
     await this.client.sendSignal(signalId);
@@ -45,7 +45,7 @@ export default class NatureLightMLRU1 {
 
   async powerOff() {
     if (!(await this.getIsRunning())) {
-      throw new Error('already off');
+      return;
     }
 
     const signalId = this._getSignalId('ico_on');
