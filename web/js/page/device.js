@@ -15,7 +15,7 @@ const logLocale = {
   action: `アクションを実行しました`,
   me: `あなた`,
   anonymous: `誰か (外部操作)`,
-  discord: 'Discord 自動制御'
+  discord: 'Discord エージェント'
 };
 
 const Device = () => {
