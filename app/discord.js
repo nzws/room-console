@@ -14,12 +14,12 @@ const discord = () => {
   client.on('ready', async () => {
     logInfo(`Logged in as ${client.user.tag}!`);
 
-    const device = await db.tables.Device.findOne({
+    const tpDevice = await db.tables.Device.findOne({
       where: {
         id: process.env.DISCORD_AUTOMANAGE_PLUG_ID
       }
     });
-    if (!device) {
+    if (!tpDevice) {
       throw new Error('not found device');
     }
 
@@ -34,19 +34,31 @@ const discord = () => {
       const resultToOn =
         ['online', 'dnd'].indexOf(newMember.clientStatus.desktop) !== -1;
 
-      const tpClient = new services[device.type](device);
+      const tpClient = new services[tpDevice.type](tpDevice);
       await tpClient.login();
 
       const current = await tpClient.getIsRunning();
       if (resultToOff && current) {
         // turn off
-        await send(device.id, 'off', {}, 'discord');
+        await send(tpDevice.id, 'off', {}, 'discord');
+        await send(
+          process.env.DISCORD_AUTOMANAGE_LIGHT_ID,
+          'down-max',
+          {},
+          'discord'
+        );
         return;
       }
 
       if (resultToOn && !current) {
         // turn on
-        await send(device.id, 'on', {}, 'discord');
+        await send(tpDevice.id, 'on', {}, 'discord');
+        await send(
+          process.env.DISCORD_AUTOMANAGE_LIGHT_ID,
+          'up-max',
+          {},
+          'discord'
+        );
       }
     });
   });
