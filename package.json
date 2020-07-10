@@ -45,7 +45,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-router-dom": "^5.2.0",
-    "sequelize": "~5",
+    "sequelize": "~6",
     "styled-components": "^5.1.1",
     "tplink-cloud-api": "^0.6.1",
     "unstated-next": "^1.1.0"
