@@ -37,7 +37,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^9.1.0",
     "koa-send": "^5.0.0",
-    "ky": "^0.20.0",
+    "ky": "^0.21.0",
     "mariadb": "^2.4.1",
     "nature-remo": "^1.2.3",
     "nodemailer": "^6.4.10",
