@@ -7,7 +7,11 @@ import {
 
 const services = {
   TPLinkPlug: {
-    name: 'TPLink Kasa - スマートプラグ'
+    name: 'TPLink Kasa - スマートプラグ',
+    note: [
+      'ON/OFFにのみ対応しています。',
+      'デバイスの識別を名前を元に行っています。デバイス名を変更してしまうと正常に動作しなくなる可能性があります。'
+    ]
   },
   NatureLightMLRU1: {
     name: 'Nature Remo - IR 照明 (消灯→常夜灯→点灯のボタンと5段階の明るさ調節)',
