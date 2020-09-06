@@ -4266,10 +4266,10 @@ is-promise@^2.1:
   resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.2.2.tgz#39ab959ccbf9a774cf079f7b40c7a26f763135f1"
   integrity sha512-+lP4/6lKUBfQjZ2pdxThZvLUAafmZb8OAxFb8XXtiQmS35INgr85hdOGoEs124ez1FCnZJt6jau/T+alh58QFQ==
 
-is-react@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/is-react/-/is-react-1.4.0.tgz#59e7a9ebe4449ea150d29884de9e11a16afb5539"
-  integrity sha512-6MfKyatgJfuvvKPPKvdaEnFlvdbwhAma4jiTOjxp9uL8oTKo9uKw9U/vTvMB2jiYkPoXBvK2QSUGI5m4egJsgw==
+is-react@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/is-react/-/is-react-1.4.1.tgz#ab5923a4b7e21f8b966d36d45f60320311d9a5e8"
+  integrity sha512-XnY1qZnMLasBCogVp+HoaMmJ4v2Sy6artHsec2OVl3qeEIGJgFZvdR8bA6vGsr9JtSh3rIYNo5nNBrbXc/glmA==
   dependencies:
     react "^16.13.1"
 
